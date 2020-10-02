@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+{% block extrahead %}
+<title>Dashboard</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+{% endblock %}
+{% block content %}
+<br/><br/>
+
+<div class="container">
+	<div class="row">
+		<div class="card col-md-2 mx-auto">
+			<div class="card-title">
+				<h1 class="display-6">Tenants</h1>
+			</div>
+			<div class="card-body">
+				<p class="display-6 text-center">{{tenantsCount}}</p>
+			</div>
+		</div>
+
+		<div class="card col-md-2 mx-auto">
+			<div class="card-title">
+				<a class="nav-link navbar-brand lead text-dark" href="{% url 'paymentLog'%}"><h1 class="display-6 text-success">Active</h1></a>
+			</div>
+			<div class="card-body">
+				<p class="display-6 text-center">{{active}}</p>
+			</div>
+
+		</div>
+		<div class="card col-md-2 mx-auto">
+			<div class="card-title">
+				<h1 class="display-6 text-danger">Inactive</h1>
+			</div>
+			<div class="card-body">
+				<p class="display-6 text-center">{{inactive}}</p>
+			</div>
+		</div>
+
+	</div>
+		<br>
+
+	<div class="card">
+		<div class="card-header bg-white">
+			<h3 class='display-6'>Tenant info.</h3>
+		</div>
+		<div class="table-responsive">
+			<div class="card-body">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th>Name</th>
+							<th>Contact</th>
+							<th>Address</th>
+							<th>Car brand</th>
+							<th>Plate number</th>
+							{% if user.is_authenticated %}
+							<th></th>
+							{%endif%}
+						</tr>
+					</thead>
+					<tbody>
+						{% for car in cars reversed %}
+						<tr>
+							<td scope="row">{{ forloop.revcounter }}</td>
+							<td>{{car.owner.name}}</td>
+							<td>{{car.owner.phone}}</td>
+							<td>{{car.owner.address}}</td>
+							<td>{{car.brand_name}}</td>
+							<td>{{car.plate_number}}</td>
+							{% if user.is_authenticated %}
+							<td><a href="remove/{{car.owner.id}}" class="btn btn-danger btn-sm text-light">Remove</a></td>
+							{%endif%}
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div><br/><br/>
+{% endblock %}

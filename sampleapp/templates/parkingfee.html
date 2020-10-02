@@ -1,0 +1,39 @@
+{% extends 'index.html'%}
+{% block extrahead %}
+<title>Paytime</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<br/><br/>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 mx-auto">
+			<div class="card">
+				<div class="card-header bg-white">
+						<h2 class="display-4">Parking pay</h2>
+				</div>
+				<div class="card-body">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-group row">
+						    <div class="col-sm-12">
+						      {{form.tenant}}
+						    </div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-12">
+						    	{{form.cash}}
+						    </div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md- mx-auto">
+						   		<button type="submit" class="btn btn-secondary btn-md btn-block">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

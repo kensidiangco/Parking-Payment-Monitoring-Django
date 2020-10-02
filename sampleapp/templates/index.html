@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% block extrahead %} {% endblock %}
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="icon" href="{%static 'images/KEN.png'%}" sizes="16x16" type="image/png">
+	
+</head>
+<body>
+	<nav class="nav navbar-expand-lg justify-content-center bg-white">
+        <a id='global' class="navbar-brand nav-link lead text-dark" href="{% url 'dashboard' %}">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="nav-link navbar-brand lead text-dark" href="{% url 'paymentLog'%}">Status</a>
+        <a class="nav-link navbar-brand lead text-dark" href="{% url 'newtenant'%}">New Tenant</a>
+        <a class="nav-link navbar-brand lead text-dark" href="{% url 'parkingfee'%}">Parking Pay</a>
+        {% if user.is_authenticated %}
+        <a class="nav-link navbar-brand lead text-dark" href="{% url 'admin:index' %}">Admin</a>
+        {% endif %}
+    </nav>
+	
+	{% block content %}
+	{% endblock %}
+</body>
+</html>
