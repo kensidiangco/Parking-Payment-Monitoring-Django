@@ -11,17 +11,17 @@
     <link rel="icon" href="{%static 'images/KEN.png'%}" sizes="16x16" type="image/png">
 	
 </head>
-<body>
-	<nav class="nav navbar-expand-lg justify-content-center bg-white">
-        <a id='global' class="navbar-brand nav-link lead text-dark" href="{% url 'dashboard' %}">Dashboard</a>
+<body class="bg-light">
+	<nav class="nav navbar-expand-lg justify-content-center shadow-sm p-3">
+        <a id='global' class="navbar-brand nav-link lead text-secondary font-weight-normal" href="{% url 'dashboard' %}">Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="nav-link navbar-brand lead text-dark" href="{% url 'paymentLog'%}">Status</a>
-        <a class="nav-link navbar-brand lead text-dark" href="{% url 'newtenant'%}">New Tenant</a>
-        <a class="nav-link navbar-brand lead text-dark" href="{% url 'parkingfee'%}">Parking Pay</a>
+        <a class="nav-link navbar-brand lead text-secondary font-weight-normal" href="{% url 'paymentLog'%}">Payment status</a>
+        <a class="nav-link navbar-brand lead text-secondary font-weight-normal" href="{% url 'newtenant'%}">Add tenant</a>
+        <a class="nav-link navbar-brand lead text-secondary font-weight-normal" href="{% url 'parkingfee'%}">Pay in</a>
         {% if user.is_authenticated %}
-        <a class="nav-link navbar-brand lead text-dark" href="{% url 'admin:index' %}">Admin</a>
+        <a class="nav-link navbar-brand lead text-secondary font-weight-normal" href="{% url 'admin:index' %}">LOGOUT ADMIN</a>
         {% endif %}
     </nav>
 	

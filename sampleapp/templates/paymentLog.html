@@ -7,7 +7,37 @@
 {% block content %}
 <br><br>
 <div class="container">
-	<div class="card">
+
+	<div class="row">
+		<div class="card col-md-2 mx-auto shadow-sm border-info">
+			<div class="card-title">
+				<h1 class="display-6 text-info">Tenants</h1>
+			</div>
+			<div class="card-body">
+				<p class="display-6 text-center text-info">{{person}}</p>
+			</div>
+		</div>
+
+		<div class="card col-md-2 mx-auto shadow-sm border-success">
+			<div class="card-title">
+				<h1 class="display-6 text-success">Active</h1></a>
+			</div>
+			<div class="card-body">
+				<p class="display-6 text-center text-success">{{active}}</p>
+			</div>
+
+		</div>
+		<div class="card col-md-2 mx-auto shadow-sm border-danger">
+			<div class="card-title">
+				<h1 class="display-6 text-danger">Inactive</h1>
+			</div>
+			<div class="card-body">
+				<p class="display-6 text-center text-danger">{{inactive}}</p>
+			</div>
+		</div>
+	</div><br>
+
+	<div class="card shadow border-light">
 		<div class="card-header bg-white">
 			<h3 class='display-6'>Tenant Status</h3>
 		</div>
@@ -34,7 +64,7 @@
 							<td>{{paid.cash}}</td>
 							<td>{{paid.due_date}}</td>
 
-							{% if paid.active == False %}
+							{% if paid.dueDate %}
 								<td class="text-danger">EXPIRED</td>
 							{% else %}
 								<td class="text-success">Active</td>

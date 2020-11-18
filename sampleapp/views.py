@@ -2,41 +2,45 @@ from django.shortcuts import render, redirect
 from .models import Tenant, Car, parking_in
 from .forms import tenantForm, carForm, ParkInForm
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 def dashboard(request):
-	tenants = Tenant.objects.all()
+	logged = Tenant.objects.all()
 	cars = Car.objects.all()
-	tenantActive = parking_in.objects.filter(active=True)
-	tenantInactive = parking_in.objects.filter(active=False)
+	PDTenants = parking_in.objects.all()
 
-	#HAHAAHAHA LOGIC CODES
+	paid = len(PDTenants)
 	dateNow = datetime.now().date()
-	tenantsCount = len(tenants)
-	active = len(tenantActive)
-	inactive = len(tenantInactive)
+	logged = len(logged)
+
 	context = {
-	'tenants': tenants,
 	'cars': cars,
 	'dateNow': dateNow,
-	'tenantsCount': tenantsCount,
-	'active': active,
-	'inactive': inactive
+	'logged': logged,
+	'paid': paid
 	}
 
 	return render(request, 'dashboard.html', context)
 
 def paymentLog(request):
 	parkIn = parking_in.objects.all()
+	PDTenants = parking_in.objects.all()
 
-	tenantActive = parking_in.objects.filter(active=True)
-	for status in tenantActive:
-		if status.due_date == datetime.now().date():
-			status.active = False
-			status.save()
+	person = len(parkIn)
+	active = 0
+	inactive = 0
 
-		context = {
+	for e in PDTenants:
+		if e.dueDate:
+			inactive += 1
+		else:
+			active += 1
+
+	context = {
 	'parkIn': parkIn,
+	'active': active,
+	'inactive': inactive,
+	'person': person
 	}
 	return render(request, 'paymentLog.html', context)
 
@@ -70,10 +74,6 @@ def parkingfee(request):
 			month = cash / 4000
 			days = month * 30
 			tenant.due_date = datetime.now().date() + timedelta(days=int(days))
-			if tenant.due_date == datetime.now().date():
-				tenant.active = False
-			else:
-				tenant.active = True
 			tenant.save()
 
 			return redirect('dashboard')

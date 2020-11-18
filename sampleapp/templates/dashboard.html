@@ -9,37 +9,29 @@
 
 <div class="container">
 	<div class="row">
-		<div class="card col-md-2 mx-auto">
+		<div class="card col-md-3 mx-auto shadow-sm border-info">
 			<div class="card-title">
-				<h1 class="display-6">Tenants</h1>
+				<h1 class="display-6 text-info">Logged in</h1>
 			</div>
 			<div class="card-body">
-				<p class="display-6 text-center">{{tenantsCount}}</p>
+				<p class="display-6 text-center text-info">{{logged}}</p>
 			</div>
 		</div>
 
-		<div class="card col-md-2 mx-auto">
+		<div class="card col-md-3 mx-auto shadow-sm border-info">
 			<div class="card-title">
-				<a class="nav-link navbar-brand lead text-dark" href="{% url 'paymentLog'%}"><h1 class="display-6 text-success">Active</h1></a>
+				<a class="nav-link navbar-brand lead text-dark" href="{% url 'paymentLog'%}"><h1 class="display-6 text-info">Paid tenants</h1></a>
 			</div>
 			<div class="card-body">
-				<p class="display-6 text-center">{{active}}</p>
+				<p class="display-6 text-center text-info">{{paid}}</p>
 			</div>
 
-		</div>
-		<div class="card col-md-2 mx-auto">
-			<div class="card-title">
-				<h1 class="display-6 text-danger">Inactive</h1>
-			</div>
-			<div class="card-body">
-				<p class="display-6 text-center">{{inactive}}</p>
-			</div>
 		</div>
 
 	</div>
 		<br>
 
-	<div class="card">
+	<div class="card shadow border-light">
 		<div class="card-header bg-white">
 			<h3 class='display-6'>Tenant info.</h3>
 		</div>
